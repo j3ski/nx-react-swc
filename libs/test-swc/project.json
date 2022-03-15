@@ -1,0 +1,43 @@
+{
+  "root": "libs/test-swc",
+  "sourceRoot": "libs/test-swc/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/test-swc",
+        "tsConfig": "libs/test-swc/tsconfig.lib.json",
+        "project": "libs/test-swc/package.json",
+        "entryFile": "libs/test-swc/src/index.ts",
+        "external": ["react/jsx-runtime"],
+        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "compiler": "swc",
+        "assets": [
+          {
+            "glob": "libs/test-swc/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/test-swc/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/test-swc"],
+      "options": {
+        "jestConfig": "libs/test-swc/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
